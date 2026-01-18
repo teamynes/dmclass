@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Everyone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --accent-neon: #00f2ff;
+            --accent-pink: #ff007a;
+            --accent-purple: #7d2ae8;
+            --accent-gold: #fbbf24;
+            --text-main: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(45deg, #0f172a 30%, #1e1b4b 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            opacity: 0.1;
+            animation: drift 60s linear infinite;
+        }
+
+        @keyframes drift {
+            from { transform: translate(0,0); }
+            to { transform: translate(-50%, -50%); }
+        }
+
+        .tetskills-badge {
+            background: var(--accent-pink);
+            padding: 8px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(255, 0, 122, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            background: linear-gradient(to right, var(--accent-neon), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover { color: var(--accent-neon); text-shadow: 0 0 10px var(--accent-neon); }
+
+        /* Container & Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        section {
+            background: var(--glass);
+            padding: 60px;
+            border-radius: 24px;
+            margin-bottom: 80px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.4s;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-neon);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: var(--accent-neon);
+            text-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--accent-purple);
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p, li {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #cbd5e1;
+        }
+
+        /* Facts Cards */
+        .fact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .fact-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent-pink);
+            transition: 0.3s;
+        }
+
+        .fact-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .fact-card strong {
+            display: block;
+            font-size: 1.4rem;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+        }
+
+        /* Addiction Section - Warning Style */
+        .warning-box {
+            background: linear-gradient(135deg, #2a0a0a 0%, #0f172a 100%);
+            border: 2px solid #ef4444;
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .warning-box::after {
+            content: "\f071";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: -20px;
+            top: -20px;
+            font-size: 15rem;
+            color: rgba(239, 68, 68, 0.1);
+        }
+
+        .warning-box h2 { color: #ef4444; text-shadow: none; border-color: #ef4444; }
+
+        /* Social Media Icons */
+        .social-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .social-card {
+            background: rgba(255,255,255,0.02);
+            padding: 20px;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .social-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.05); }
+
+        .social-card i {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .social-card:hover i { transform: scale(1.2) rotate(10deg); }
+
+        .fa-facebook { color: #1877F2; }
+        .fa-instagram { color: #E4405F; }
+        .fa-tiktok { color: #ffffff; }
+        .fa-youtube { color: #FF0000; }
+        .fa-linkedin { color: #0A66C2; }
+        .fa-pinterest { color: #E60023; }
+        .fa-twitter { color: #1DA1F2; }
+        .fa-whatsapp { color: #25D366; }
+
+        /* Stats Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--glass);
+        }
+
+        th { background: var(--accent-purple); color: white; font-size: 1.1rem; }
+        tr:hover td { background: rgba(255,255,255,0.05); }
+
+        /* New List Styles */
+        ul.check-list { list-style: none; }
+        ul.check-list li {
+            padding-left: 30px;
+            position: relative;
+        }
+        ul.check-list li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent-neon);
+        }
+
+        /* Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#about">What is DM?</a></li>
+            <li><a href="#scope">Scope</a></li>
+            <li><a href="#advantages">Advantages</a></li>
+            <li><a href="#facts">Facts</a></li>
+            <li><a href="#terms">Terminology</a></li>
+            <li><a href="#darkside">The Dark Side</a></li>
+            <li><a href="#social">Social Types</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <div class="tetskills-badge">Welcome</div>
+        <h1 class="animate__animated animate__fadeInDown">Digital Marketing Masterclass</h1>
+        <p class="animate__animated animate__fadeInUp animate__delay-1s">Module 1: The Foundations of the Digital Era</p>
+        <div style="margin-top: 30px;">
+            <i class="fas fa-chevron-down animate__animated animate__bounce animate__infinite" style="color: var(--accent-neon); font-size: 2rem;"></i>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <section id="about" class="reveal">
+            <h2>01. Beyond the Screen</h2>
+            <p>Digital marketing isn't just about showing ads on a phone. It is the <strong>art of psychological connection</strong> powered by data. It is the ecosystem where brands, consumers, and technology interact in real-time. Unlike any other form of communication in human history, digital marketing allows for a <strong>one-to-one conversation</strong> at a global scale.</p>
+            <p>At Tetskills, we define it as: "The strategic use of digital channels to influence consumer behavior and drive measurable business outcomes." This includes everything from the email you receive in the morning to the Instagram Reel you watch at night.</p>
+        </section>
+
+        <section id="scope" class="reveal">
+            <h2>02. The Vast Scope of Digital Marketing</h2>
+            <p>The scope of digital marketing is expanding exponentially. As businesses move online, the demand for skilled marketers is at an all-time high. This isn't just a job; it's a diverse career path.</p>
+            
+            <div class="fact-grid">
+                <div class="fact-card" style="border-color: var(--accent-purple);">
+                    <strong><i class="fas fa-briefcase"></i> Professional Career</strong>
+                    <p>Become a Digital Marketing Manager, SEO Specialist, Content Strategist, or Data Analyst in top MNCs. The salary growth in this sector is 3x faster than traditional roles.</p>
+                </div>
+                <div class="fact-card" style="border-color: var(--accent-neon);">
+                    <strong><i class="fas fa-laptop-house"></i> Freelancing & Nomad</strong>
+                    <p>Work from anywhere in the world. Platforms like Upwork and Fiverr allow digital marketers to serve global clients from the comfort of their homes.</p>
+                </div>
+                <div class="fact-card" style="border-color: var(--accent-gold);">
+                    <strong><i class="fas fa-store"></i> Entrepreneurship</strong>
+                    <p>Start your own e-commerce brand or dropshipping business. You don't need a physical shop; you just need a website and marketing skills.</p>
+                </div>
+                <div class="fact-card" style="border-color: var(--accent-pink);">
+                    <strong><i class="fas fa-user-astronaut"></i> Personal Branding</strong>
+                    <p>Become an Influencer or Thought Leader. Monetize your own audience through sponsorships and affiliate marketing.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="advantages" class="reveal">
+            <h2>03. Why Go Digital? The Advantages</h2>
+            <p>Why are companies shifting millions of dollars from TV ads to Facebook ads? The advantages are undeniable.</p>
+            
+            <ul class="check-list">
+                <li><strong>Global Reach with Local Targeting:</strong> A small bakery in Kochi can target customers within a 5km radius, or a software company in Bangalore can target clients in New York. The geographic barriers are broken.</li>
+                <br>
+                <li><strong>Cost-Effectiveness:</strong> You can start a Facebook ad campaign for as little as $1 per day. Compare this to the thousands of dollars required for a newspaper ad or billboard.</li>
+                <br>
+                <li><strong>Measurable Results (The Data Advantage):</strong> In traditional marketing, you never know exactly how many people saw your billboard. In digital marketing, you know exactly how many views, clicks, shares, and purchases occurred.</li>
+                <br>
+                <li><strong>24/7 Marketing:</strong> Your website and ads run while you sleep. You can make sales at 3 AM without having a shop open.</li>
+                <br>
+                <li><strong>Personalization:</strong> You can show different ads to different people based on their interests. If someone likes sports, show them shoes. If they like cooking, show them pans. This level of personalization is impossible with TV.</li>
+            </ul>
+        </section>
+
+        <section id="facts" class="reveal">
+            <h2>04. Mind-Blowing Facts (2026 Edition)</h2>
+            <div class="fact-grid">
+                <div class="fact-card">
+                    <strong>$850 Billion+</strong>
+                    <p>Global digital ad spending is projected to cross this mark by the end of 2026.</p>
+                </div>
+                <div class="fact-card">
+                    <strong>The 3-Second Rule</strong>
+                    <p>Humans now have a shorter attention span (approx. 8 seconds) than a goldfish. Marketers have only 3 seconds to grab attention before a user scrolls.</p>
+                </div>
+                <div class="fact-card">
+                    <strong>Data is the New Oil</strong>
+                    <p>90% of the world's data was created in the last 2 years alone, mostly through digital marketing interactions.</p>
+                </div>
+                <div class="fact-card">
+                    <strong>The 80/20 Secret</strong>
+                    <p>Most successful brands only promote their products 20% of the time. The other 80% is spent providing free value and entertainment.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="terms" class="reveal">
+            <h2>05. The Marketer's Dictionary</h2>
+            <p>To speak the language of digital marketing, you must know these essential terms.</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Term</th>
+                        <th>Definition</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>SEO (Search Engine Optimization)</strong></td>
+                        <td>The practice of optimizing a website to rank higher in organic (free) search results on Google.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PPC (Pay-Per-Click)</strong></td>
+                        <td>A model where advertisers pay a fee each time one of their ads is clicked. Essentially, buying visits to your site.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CTR (Click-Through Rate)</strong></td>
+                        <td>The percentage of people who saw your ad and actually clicked on it. A high CTR means your ad is effective.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Conversion Rate</strong></td>
+                        <td>The percentage of visitors who complete a desired goal (like buying a product or signing up for a newsletter).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ROI (Return on Investment)</strong></td>
+                        <td>A measure used to evaluate the efficiency of an investment. (Profit minus Cost) / Cost.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bounce Rate</strong></td>
+                        <td>The percentage of visitors who navigate away from the site after viewing only one page.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lead Generation</strong></td>
+                        <td>The process of attracting and converting strangers into someone who has indicated interest in your company's product.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="darkside" class="warning-box reveal">
+            <h2>06. The Dark Side: Social Media Addiction</h2>
+            <p>While we teach you how to market, we must also teach you the <strong>Ethics of Attention</strong>. Most people don't realize that social media platforms are designed using "Las Vegas Style" psychology.</p>
+            <ul style="margin-left: 20px; margin-bottom: 20px; color: #cbd5e1;">
+                <li><strong>The Variable Reward:</strong> The "Pull-to-Refresh" feature is identical to a slot machine. The brain releases dopamine because you don't know if the next post will be exciting or boring.</li>
+                <li><strong>The Infinite Scroll:</strong> By removing "stopping cues" (like page numbers), platforms keep users in a state of flow that can lead to hours of lost time.</li>
+                <li><strong>Social Validation Loop:</strong> Likes and comments trigger the same neurological pathways as food or money, creating a physical dependency on the app.</li>
+                <li><strong>FOMO (Fear Of Missing Out):</strong> The anxiety that an exciting or interesting event may currently be happening elsewhere, often aroused by posts seen on social media.</li>
+            </ul>
+            <p><em>As a Tetskills marketer, your goal is to add value, not exploit addiction.</em></p>
+        </section>
+
+        <section id="comparison" class="reveal">
+            <h2>07. Digital vs. Traditional</h2>
+            <table>
+                <tr>
+                    <th>Feature</th>
+                    <th>Traditional (Old School)</th>
+                    <th>Digital (Tetskills Way)</th>
+                </tr>
+                <tr>
+                    <td>Targeting</td>
+                    <td>Shotgun approach (Hit everyone)</td>
+                    <td>Laser precision (Hit the right one)</td>
+                </tr>
+                <tr>
+                    <td>Feedback</td>
+                    <td>None (Wait for sales reports)</td>
+                    <td>Instant (See every click)</td>
+                </tr>
+                <tr>
+                    <td>Ad Cost</td>
+                    <td>High entry barrier ($10,000+)</td>
+                    <td>Start with $1</td>
+                </tr>
+                <tr>
+                    <td>Modification</td>
+                    <td>Impossible after printing</td>
+                    <td>Change ads in 5 seconds</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="social" class="reveal">
+            <h2>08. The Social Media Universe</h2>
+            <p>Social media is not a single entity. It is a collection of different types of platforms, each serving a unique purpose.</p>
+            
+            <div class="social-showcase">
+                <div class="social-card">
+                    <i class="fab fa-facebook"></i>
+                    <h4>Social Networking</h4>
+                    <p>Facebook, LinkedIn. Used for connecting with people and professionals.</p>
+                </div>
+                <div class="social-card">
+                    <i class="fab fa-instagram"></i>
+                    <h4>Media Sharing</h4>
+                    <p>Instagram, Snapchat, YouTube. Focused on photos and videos.</p>
+                </div>
+                <div class="social-card">
+                    <i class="fab fa-twitter"></i>
+                    <h4>Microblogging</h4>
+                    <p>Twitter (X), Threads. For short, real-time updates and news.</p>
+                </div>
+                <div class="social-card">
+                    <i class="fab fa-pinterest"></i>
+                    <h4>Bookmarking</h4>
+                    <p>Pinterest. Used to discover, save, and share new content.</p>
+                </div>
+                <div class="social-card">
+                    <i class="fab fa-reddit"></i>
+                    <h4>Discussion Forums</h4>
+                    <p>Reddit, Quora. Places for asking questions and community discussion.</p>
+                </div>
+                <div class="social-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <h4>Messaging Apps</h4>
+                    <p>WhatsApp, Telegram. Private communication and chatbots.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <h2>09. Why Most Marketers Fail</h2>
+            <p>Did you know that 61% of marketers don't think their strategy is effective? This is because they focus on **Vanity Metrics** (Likes, Followers) instead of **Value Metrics** (Sales, Leads). At Tetskills, we teach you to look past the numbers. You need to understand the "Buyer's Journey":</p>
+            <ol style="margin-left: 20px;">
+                <li><strong>Awareness:</strong> The user realizes they have a problem.</li>
+                <li><strong>Consideration:</strong> The user looks for solutions.</li>
+                <li><strong>Decision:</strong> The user chooses your brand over a competitor.</li>
+            </ol>
+            <p>Marketing today is no longer about the loud megaphone; it's about the helpful whisper. It's about being present when a customer searches "How do I..." or "Where is the best..."</p>
+        </section>
+
+    </div>
+
+    <footer style="text-align: center; padding: 50px; border-top: 1px solid var(--glass);">
+        <p>Course Module 01 | &copy; 2026 Tetskills Academy</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; color: #64748b;">Unlock your potential in the digital economy.</p>
+    </footer>
+
+    <script>
+        // Scroll Reveal Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Initial call
+        reveal();
+    </script>
+</body>
+</html>
